@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "timezone": "Asia/Kuala_Lumpur",
+  "review_intervals_days": [1, 3, 7, 14, 30, 60],
+  "grading_rules": {
+    "forgotten": "reset_to_stage_0_and_review_tomorrow",
+    "hard": "keep_current_stage_and_review_tomorrow",
+    "okay": "advance_one_stage",
+    "easy": "advance_two_stages_when_possible"
+  },
+  "items": [
+    {
+      "id": "2026-08-24-speaking-practice",
+      "title": "2026-08-24 口语练习｜点餐、公交、付款",
+      "type": "speaking",
+      "source": "2026-08-24_口语练习.md",
+      "learned_at": "2026-08-24",
+      "stage": 0,
+      "next_review_at": "2026-08-25",
+      "last_review_at": null,
+      "last_result": null,
+      "review_count": 0,
+      "weak_items": [
+        "fare",
+        "Three to Komtar, please.",
+        "How much for three to Komtar?",
+        "Here you go."
+      ],
+      "status": "active"
+    },
+    {
+      "id": "2026-08-24-vocab-day1",
+      "title": "2026-08-24 生活常用词汇 Day 1｜40 个名词",
+      "type": "vocabulary",
+      "source": "2026-08-24_生活常用词汇_Day1.md",
+      "learned_at": "2026-08-24",
+      "stage": 0,
+      "next_review_at": "2026-08-25",
+      "last_review_at": null,
+      "last_result": null,
+      "review_count": 0,
+      "weak_items": [],
+      "status": "active"
+    }
+  ]
+}
