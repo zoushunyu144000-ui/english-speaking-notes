@@ -26,6 +26,7 @@
         "How much for three to Komtar?",
         "Here you go."
       ],
+      "history": [],
       "status": "active"
     },
     {
@@ -40,6 +41,7 @@
       "last_result": null,
       "review_count": 0,
       "weak_items": [],
+      "history": [],
       "status": "active"
     }
   ]
