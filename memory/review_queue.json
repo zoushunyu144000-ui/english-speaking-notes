@@ -62,6 +62,41 @@
         }
       ],
       "status": "active"
+    },
+    {
+      "id": "2026-09-01-day1-cafe-vocab",
+      "title": "2026-09-01 Day 1 补｜餐厅咖啡店 40 个词",
+      "type": "vocabulary",
+      "source": "2026-09-01_Day1补_餐厅咖啡店.md",
+      "learned_at": "2026-09-01",
+      "stage": 0,
+      "next_review_at": "2026-09-02",
+      "last_review_at": null,
+      "last_result": null,
+      "review_count": 0,
+      "weak_items": [],
+      "history": [],
+      "status": "active"
+    },
+    {
+      "id": "2026-09-01-day1-cafe-speaking",
+      "title": "2026-09-01 Day 1 补｜餐厅咖啡店口语",
+      "type": "speaking",
+      "source": "2026-09-01_Day1补_餐厅咖啡店.md",
+      "learned_at": "2026-09-01",
+      "stage": 0,
+      "next_review_at": "2026-09-02",
+      "last_review_at": null,
+      "last_result": null,
+      "review_count": 0,
+      "weak_items": [
+        "Dine in or takeaway?",
+        "One kopi O, less sweet, please.",
+        "Can I pay by card?",
+        "Where do I collect my order?"
+      ],
+      "history": [],
+      "status": "active"
     }
   ]
 }
