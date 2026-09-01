@@ -16,17 +16,22 @@
       "source": "2026-08-24_口语练习.md",
       "learned_at": "2026-08-24",
       "stage": 0,
-      "next_review_at": "2026-08-25",
-      "last_review_at": null,
-      "last_result": null,
-      "review_count": 0,
+      "next_review_at": "2026-09-02",
+      "last_review_at": "2026-09-01",
+      "last_result": "hard",
+      "review_count": 1,
       "weak_items": [
         "fare",
         "Three to Komtar, please.",
-        "How much for three to Komtar?",
         "Here you go."
       ],
-      "history": [],
+      "history": [
+        {
+          "reviewed_at": "2026-09-01",
+          "result": "hard",
+          "notes": "First recall: Three for Komtar (needed to); fare recalled as 车票; Here you go forgotten then recovered. How much for three to Komtar correct. After reteach: Three to Komtar and ticket/fare distinction recovered; still dropping please."
+        }
+      ],
       "status": "active"
     },
     {
@@ -36,12 +41,26 @@
       "source": "2026-08-24_生活常用词汇_Day1.md",
       "learned_at": "2026-08-24",
       "stage": 0,
-      "next_review_at": "2026-08-25",
-      "last_review_at": null,
-      "last_result": null,
-      "review_count": 0,
-      "weak_items": [],
-      "history": [],
+      "next_review_at": "2026-09-02",
+      "last_review_at": "2026-09-01",
+      "last_result": "forgotten",
+      "review_count": 1,
+      "weak_items": [
+        "receipt",
+        "ingredient",
+        "destination",
+        "reservation",
+        "landlord",
+        "socket",
+        "fare"
+      ],
+      "history": [
+        {
+          "reviewed_at": "2026-09-01",
+          "result": "forgotten",
+          "notes": "Priority words blank on first recall (receipt, ingredient, destination, reservation, landlord, socket). All recovered after one look. fare confused with ticket."
+        }
+      ],
       "status": "active"
     }
   ]
