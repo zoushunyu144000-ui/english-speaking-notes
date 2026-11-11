@@ -25,6 +25,12 @@
 **Content model**: `Chapter.panels?: Panel[]` (img key + lines[{sentenceId, speaker?, side?, say?}]); every panel line references a prose sentence id in the same chapter — one source of truth for card/marks/review. Phrase objects gained `pos` （词性/短语类型）, hand-labelled for all ~120 phrases in the 48 seed sentences (single words n./v./adj./adv./prep., phrases 动词短语/名词短语/介词短语/习语/口语句型 etc.); zod keeps `pos` optional so user-imported books without it still parse
 **Seed refresh**: populateLibrary now upserts the 4 built-in books by id (content + cover fields) so existing installs receive new editions (panels, POS tags, covers); imported books, progress, marks, settings untouched. Client calls it once per app load; also declared as post_submit_action
 
+### 真书封面 + 日式彩色动漫画风（2026-11-11 edit v5）
+**User direction (verbatim brief + screenshot)**: 书架封面是「横图＋褐色卡片块」不像书、封面下书名重复打印；书架页（用户称「目录」）整体要美化；画风必须是日式彩色动漫，不是水彩、不是一图一景
+**New generated art** (media.generate_image → `client/src/assets/`, all text-free, opened and checked): 4 张竖版 2:3 封面画 `penang-cover.jpg` / `town-cover.jpg` / `alice-cover.jpg`（覆盖旧水彩版）/ `airport-cover.jpg`（各 1280×1920）+ 7 张横版 1920×1280 场景图覆盖旧文件 `airport/street/lobby/cafe/counter.jpg`、`market/bus.webp`。角色设定全程统一并以封面图作参考图续画：Lin（短深棕发、浅青 T 恤、卡其短裤、米色帆布包）、Mei（黑色低马尾、珊瑚橙上衣、米白裙、编织包）、Lim 叔（灰发眼镜白围裙）；人物在场景中说话行动，分镜格即这些场景图＋气泡
+**Cover redesign**: BookCover 改为 2:3 满版封面画，书名/kicker/副标题用排版层压在画面顶部天空区（文字不烧进图），去掉底部褐色渐变块与封面下重复书名/副标题行，书下只留一行进度；物理感靠书脊高光＋右侧页边＋投影；无图导入书改为布面装帧式排版封面。种子 coverImg 改指新封面键（penang-cover/town-cover/airport-cover），populateLibrary upsert 自动刷新已装用户
+**Also**: 书架间距节奏统一（网格 gap 28/48、标题区留白）；阅读器目录抽屉精修（章节序号、当前章左侧重音条＋「正在读」、分隔线）；分镜格改漫画式 2px 墨线框、格距 30px
+
 ## Long-term data behavior
 - **Refresh policy**: none; all data is user-local state in app.db (built-in books seeded/refreshed via populateLibrary upsert of the 4 seed ids only; imports and user marks/progress/settings never overwritten)
 - **Growth**: marks grow as the user collects sentences/phrases/examples; imported books append rows

@@ -34,11 +34,15 @@
   - 讲解卡按用户反馈收紧为小尺寸、小字、小圆钮、点外关闭；
   - 书架与封面重新设计。
   - 已验链路（建成时）：分类过滤、点句出卡、收藏进笔记本（今日）、目录跳章与进度恢复、主题实时生效、复习评价推进到期日。
+- **2026-11-11（截图反馈修正轮）**：用户在 iPad 上看过书架后指出三点问题，本轮按截图反馈修正——
+  - 封面改为竖版 2:3 满版真书封面：整幅封面画铺满，书名/副标题用排版层压在画面上，去掉原来「横图＋底部褐色块」的拼凑感，也去掉封面下方重复打印的书名/副标题；
+  - 书架页与阅读器目录抽屉精修：网格间距与标题区留白统一，目录章节带序号、当前章重音条与「正在读」标记；
+  - 全部插图/分镜/封面换为**日式彩色动漫画风**（不再是水彩）：主角 Lin、Mei 与 Lim 叔的人物形象以封面图为参考跨图保持一致；本轮新生成 11 张图——4 张封面（penang-cover / town-cover / alice-cover / airport-cover）＋ 7 张场景图（airport / street / lobby / cafe / counter / market / bus）。
 
 ## 备份范围说明
 
 - 本目录包含：`client/`、`server/`、`drizzle/` 源码与根目录配置（package.json、tsconfig.base.json、bunfig.toml、bun.lock、space.json、DATA-PLAN.md、AGENTS.md）。
 - **未备份**（有意跳过）：
   - 应用数据库 `app.db*` — 用户私人学习数据，按规则永不推 GitHub；
-  - 图片素材（二进制，避免文本推送损坏；均为可重新生成的插图/封面）：`icon.webp`、`client/src/assets/` 下的 `cafe.jpg`、`street.jpg`、`counter.jpg`、`lobby.jpg`、`airport.jpg`、`alice-cover.jpg`、`bus.webp`、`market.webp`，以及这些图片的生成记录 json（含时效性签名下载链接）；
+  - 图片素材（二进制，避免文本推送损坏；均为可重新生成的插图/封面）：`icon.webp`、`client/src/assets/` 下的 `cafe.jpg`、`street.jpg`、`counter.jpg`、`lobby.jpg`、`airport.jpg`、`alice-cover.jpg`、`bus.webp`、`market.webp`、`penang-cover.jpg`、`town-cover.jpg`、`airport-cover.jpg`，以及这些图片的生成记录 json（含时效性签名下载链接）；
   - `node_modules/`、`audits/`、构建产物与缓存。

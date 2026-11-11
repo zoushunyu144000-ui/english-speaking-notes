@@ -9,6 +9,9 @@ import airportImg from "./assets/airport.jpg";
 import lobbyImg from "./assets/lobby.jpg";
 import counterImg from "./assets/counter.jpg";
 import aliceCoverImg from "./assets/alice-cover.jpg";
+import penangCoverImg from "./assets/penang-cover.jpg";
+import townCoverImg from "./assets/town-cover.jpg";
+import airportCoverImg from "./assets/airport-cover.jpg";
 
 /* ================= types ================= */
 
@@ -33,6 +36,9 @@ const IMG: Record<string, string> = {
   lobby: lobbyImg,
   counter: counterImg,
   "alice-cover": aliceCoverImg,
+  "penang-cover": penangCoverImg,
+  "town-cover": townCoverImg,
+  "airport-cover": airportCoverImg,
 };
 
 const LADDER = [1, 3, 7, 14, 30, 60];
@@ -317,58 +323,153 @@ function markKey(bookId: string, sentenceId: string, kind: MarkKind, en: string)
 
 function BookCover({ book, large = false, mini = false }: { book: BookMeta; large?: boolean; mini?: boolean }) {
   const img = book.coverKind === "image" && book.coverImg ? IMG[book.coverImg] : undefined;
-  const titleSize = mini
-    ? 9.5
-    : large
-      ? book.title.length > 26
-        ? 17.5
-        : book.title.length > 18
-          ? 19
-          : 21
-      : book.title.length > 26
-        ? 14
-        : book.title.length > 18
-          ? 16
-          : 18;
+  const titleSize = large
+    ? book.title.length > 26
+      ? 19
+      : book.title.length > 18
+        ? 21.5
+        : 24
+    : book.title.length > 26
+      ? 15
+      : book.title.length > 18
+        ? 17
+        : 19;
   return (
     <div
-      className="relative w-full overflow-hidden text-[#fdfaf3]"
+      className="relative w-full overflow-hidden"
       style={{
-        aspectRatio: mini ? "3 / 3.1" : "3 / 3.6",
-        borderRadius: "7px 13px 13px 7px",
-        background: img ? "#6d4525" : `linear-gradient(155deg, ${book.coverFrom}, ${book.coverTo})`,
+        aspectRatio: "2 / 3",
+        borderRadius: "5px 11px 11px 5px",
+        background: img ? "#3c4652" : "#6b5a44",
         boxShadow:
-          "inset 12px 0 22px -8px rgba(30,20,8,0.4), inset 0 1px 0 rgba(255,255,255,0.25), inset -2px 0 3px rgba(255,255,255,0.14), 0 1px 2px rgba(60,45,20,0.12), 0 6px 14px -6px rgba(60,45,20,0.3), 0 22px 38px -14px rgba(60,45,20,0.48)",
+          "0 1px 2px rgba(60,45,20,0.14), 0 8px 18px -6px rgba(60,45,20,0.3), 0 26px 44px -16px rgba(60,45,20,0.45)",
       }}
     >
       {img ? (
         <img src={img} alt="" className="absolute inset-0 h-full w-full object-cover" />
       ) : (
-        <>
-          {/* plain-colour cover (imported books): quiet monogram plate */}
-          <span
-            className="font-en-serif absolute inset-0 flex items-center justify-center"
-            style={{ fontSize: mini ? 26 : 64, fontWeight: 700, color: "rgba(255,255,255,0.2)", paddingBottom: "18%" }}
-            aria-hidden="true"
-          >
-            {book.title.charAt(0) || "B"}
-          </span>
+        /* plain-colour cover (imported books): clothbound typographic design */
+        <div
+          className="absolute inset-0"
+          style={{ background: `linear-gradient(158deg, ${book.coverFrom}, ${book.coverTo})` }}
+        >
           <span
             className="pointer-events-none absolute inset-0"
-            style={{ background: "radial-gradient(90% 60% at 50% 0%, rgba(255,255,255,0.14), rgba(255,255,255,0) 60%)" }}
+            style={{ background: "radial-gradient(90% 55% at 50% 0%, rgba(255,255,255,0.16), rgba(255,255,255,0) 60%)" }}
           />
-        </>
+          {!mini ? (
+            <div className="absolute inset-0 flex flex-col items-center px-5 text-center" style={{ paddingTop: "24%", color: "#fdf6e3" }}>
+              <span
+                aria-hidden="true"
+                className="font-en-serif flex items-center justify-center rounded-full"
+                style={{
+                  width: 52,
+                  height: 52,
+                  fontSize: 25,
+                  fontWeight: 700,
+                  border: "1.5px solid rgba(253,246,227,0.55)",
+                  color: "rgba(253,246,227,0.92)",
+                }}
+              >
+                {book.title.charAt(0) || "B"}
+              </span>
+              <div className="font-en-serif" style={{ marginTop: 18, fontWeight: 700, fontSize: titleSize, lineHeight: 1.22, textShadow: "0 1px 8px rgba(20,14,6,0.35)" }}>
+                {book.title}
+              </div>
+              <span aria-hidden="true" style={{ marginTop: 12, width: 30, height: 1.5, background: "rgba(253,246,227,0.6)" }} />
+              <div style={{ marginTop: 10, fontSize: 11, lineHeight: 1.45, color: "rgba(253,246,227,0.82)" }}>{book.subtitle}</div>
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: 14,
+                  left: 0,
+                  right: 0,
+                  fontSize: 9,
+                  letterSpacing: "0.3em",
+                  textTransform: "uppercase",
+                  color: "rgba(253,246,227,0.6)",
+                }}
+              >
+                {book.kicker}
+              </div>
+            </div>
+          ) : null}
+        </div>
       )}
+      {/* cover typography laid over the art, like a real published cover:
+          kicker + title + subtitle in the open sky at the top of the art */}
+      {img && !mini ? (
+        <>
+          <span
+            className="pointer-events-none absolute inset-x-0 top-0 z-[2]"
+            style={{
+              height: "52%",
+              background:
+                "linear-gradient(180deg, rgba(18,22,26,0.42) 0%, rgba(18,22,26,0.18) 55%, rgba(18,22,26,0) 100%)",
+            }}
+          />
+          <div className="absolute inset-x-0 top-0 z-[2]" style={{ padding: large ? "20px 18px 0 26px" : "15px 14px 0 22px" }}>
+            <div
+              style={{
+                fontSize: 9.5,
+                fontWeight: 700,
+                letterSpacing: "0.3em",
+                textTransform: "uppercase",
+                color: "rgba(255,251,240,0.88)",
+                textShadow: "0 1px 6px rgba(15,18,20,0.55)",
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+              }}
+            >
+              {book.kicker}
+            </div>
+            <div
+              className="font-en-serif"
+              style={{
+                marginTop: 6,
+                fontWeight: 700,
+                fontSize: titleSize,
+                lineHeight: 1.16,
+                color: "#fffdf4",
+                textShadow: "0 1px 3px rgba(15,18,20,0.5), 0 3px 14px rgba(15,18,20,0.45)",
+                display: "-webkit-box",
+                WebkitLineClamp: 3,
+                WebkitBoxOrient: "vertical",
+                overflow: "hidden",
+              }}
+            >
+              {book.title}
+            </div>
+            <span aria-hidden="true" className="block" style={{ marginTop: 9, width: 28, height: 2, borderRadius: 2, background: "rgba(255,251,240,0.85)", boxShadow: "0 1px 4px rgba(15,18,20,0.4)" }} />
+            <div
+              style={{
+                marginTop: 7,
+                fontSize: large ? 11.5 : 10.5,
+                lineHeight: 1.4,
+                color: "rgba(255,251,240,0.92)",
+                textShadow: "0 1px 5px rgba(15,18,20,0.55)",
+                display: "-webkit-box",
+                WebkitLineClamp: 2,
+                WebkitBoxOrient: "vertical",
+                overflow: "hidden",
+              }}
+            >
+              {book.subtitle}
+            </div>
+          </div>
+        </>
+      ) : null}
       {/* spine: light crease + shaded gutter on the binding edge */}
       <span
         className="pointer-events-none absolute inset-y-0 left-0 z-[3]"
         style={{
-          width: mini ? 8 : 13,
+          width: mini ? 7 : 12,
           background:
-            "linear-gradient(90deg, rgba(25,16,6,0.34) 0%, rgba(25,16,6,0.1) 45%, rgba(255,255,255,0.22) 78%, rgba(25,16,6,0.12) 100%)",
+            "linear-gradient(90deg, rgba(25,16,6,0.32) 0%, rgba(25,16,6,0.09) 45%, rgba(255,255,255,0.22) 78%, rgba(25,16,6,0.12) 100%)",
         }}
       />
-      {/* page block peeking on the fore-edge + gloss sweep */}
+      {/* page block peeking on the fore-edge */}
       <span
         className="pointer-events-none absolute inset-y-[3px] right-0 z-[3]"
         style={{
@@ -379,90 +480,11 @@ function BookCover({ book, large = false, mini = false }: { book: BookMeta; larg
           boxShadow: "-1px 0 2px rgba(30,20,8,0.25)",
         }}
       />
+      {/* soft gloss sweep */}
       <span
         className="pointer-events-none absolute inset-0 z-[2]"
-        style={{ background: "linear-gradient(112deg, rgba(255,255,255,0.17) 0%, rgba(255,255,255,0) 38%)" }}
+        style={{ background: "linear-gradient(112deg, rgba(255,255,255,0.13) 0%, rgba(255,255,255,0) 34%)" }}
       />
-      {/* title band along the foot of the cover */}
-      <div
-        className="absolute inset-x-0 bottom-0 z-[2]"
-        style={{
-          background:
-            "linear-gradient(180deg, rgba(28,20,10,0) 0%, rgba(28,20,10,0.52) 30%, rgba(24,17,8,0.82) 72%, rgba(20,14,6,0.9) 100%)",
-          padding: mini ? "16px 8px 7px 14px" : large ? "34px 15px 13px 24px" : "26px 12px 11px 21px",
-        }}
-      >
-        {mini ? null : (
-          <div
-            style={{
-              fontSize: 9.5,
-              letterSpacing: "0.26em",
-              textTransform: "uppercase",
-              color: "rgba(250,238,214,0.92)",
-              textShadow: "0 1px 6px rgba(20,12,4,0.6)",
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-            }}
-          >
-            {book.kicker}
-          </div>
-        )}
-        <div
-          className="font-en-serif"
-          style={{
-            fontWeight: 700,
-            fontSize: titleSize,
-            lineHeight: 1.18,
-            marginTop: mini ? 0 : 4,
-            textShadow: "0 1px 10px rgba(20,12,4,0.45)",
-            display: "-webkit-box",
-            WebkitLineClamp: mini ? 2 : 3,
-            WebkitBoxOrient: "vertical",
-            overflow: "hidden",
-          }}
-        >
-          {book.title}
-        </div>
-        {mini ? null : (
-          <div
-            style={{
-              marginTop: 5,
-              fontSize: large ? 11.5 : 11,
-              lineHeight: 1.35,
-              color: "rgba(253,244,226,0.82)",
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-            }}
-          >
-            {book.subtitle}
-          </div>
-        )}
-      </div>
-      {book.badge && !mini ? (
-        <span
-          className="absolute z-[4] rounded-full font-bold"
-          style={{
-            top: 10,
-            right: 10,
-            background: "rgba(253,250,243,0.9)",
-            WebkitBackdropFilter: "blur(6px)",
-            backdropFilter: "blur(6px)",
-            boxShadow: "0 4px 12px rgba(40,26,8,0.28), inset 0 1px 0 rgba(255,255,255,0.7)",
-            color: "#86501f",
-            fontSize: large ? 11.5 : 10.5,
-            padding: "4px 10px",
-            whiteSpace: "nowrap",
-            maxWidth: "92%",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-          }}
-        >
-          <span className="sm:hidden">{book.badge.split("·")[0]?.trim()}</span>
-          <span className="max-sm:hidden">{book.badge}</span>
-        </span>
-      ) : null}
     </div>
   );
 }
@@ -517,7 +539,7 @@ function Shelf({
           "radial-gradient(110% 46% at 50% -6%, rgba(255,252,244,0.95) 0%, rgba(255,252,244,0) 55%), linear-gradient(180deg, #f4efe2 0%, #f1ebdb 55%, #eee6d2 100%)",
       }}
     >
-      <div className="flex flex-wrap items-center justify-between gap-3 pt-6">
+      <div className="flex flex-wrap items-center justify-between gap-3 pt-8">
         <h1 className="font-cn-serif" style={{ fontSize: 31, fontWeight: 700, margin: 0, letterSpacing: "0.02em" }}>
           我的书架
         </h1>
@@ -557,7 +579,7 @@ function Shelf({
         </div>
       </div>
 
-      <div className="mt-4 flex flex-wrap gap-2" role="tablist" aria-label="书籍分类">
+      <div className="mt-5 flex flex-wrap gap-2" role="tablist" aria-label="书籍分类">
         {CATEGORY_TABS.map((t) => (
           <button
             key={t.key}
@@ -585,7 +607,7 @@ function Shelf({
 
       {continueBook ? (
         <div
-          className="mt-7 flex items-center gap-5 rounded-[24px] px-5 py-4"
+          className="mt-8 flex items-center gap-5 rounded-[24px] px-5 py-4"
           style={{
             background: "linear-gradient(180deg, #fffefa, #fffdf8)",
             boxShadow:
@@ -632,7 +654,7 @@ function Shelf({
           这个分类里还没有书。点右上角「添加书籍」，把想读的书告诉 Muse 就好。
         </p>
       ) : (
-        <div className="mt-9 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-4">
+        <div className="mt-10 grid grid-cols-2 gap-x-7 gap-y-12 sm:grid-cols-3 lg:grid-cols-4">
           {shown.map((book) => (
             <div key={book.id} className="flex min-w-0 flex-col">
               <button
@@ -644,16 +666,9 @@ function Shelf({
               >
                 <BookCover book={book} large />
               </button>
-              <div className="font-en-serif mt-3.5 text-[15.5px] leading-snug font-bold">{book.title}</div>
-              <div
-                className="mt-0.5 text-[12.5px]"
-                style={{ color: "#8a8172", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}
-              >
-                {book.subtitle}
-              </div>
-              <div className="mt-2 flex items-center justify-between gap-2 text-[12.5px]" style={{ color: "#6f6a5e" }}>
-                <span>{book.progressPct > 0 ? `读到 ${book.progressPct}%` : "未开始"}</span>
-                <span className="inline-block h-[4px] flex-none rounded-full" style={{ width: 72, background: "#ece0c4", overflow: "hidden" }}>
+              <div className="mt-3 flex items-center gap-2.5 text-[12px]" style={{ color: "#8a8172" }}>
+                <span className="flex-none">{book.progressPct > 0 ? `读到 ${book.progressPct}%` : "未开始"}</span>
+                <span className="inline-block h-[3px] min-w-0 flex-1 rounded-full" style={{ background: "#e7dcc2", overflow: "hidden" }}>
                   <span className="block h-full rounded-full" style={{ width: `${book.progressPct}%`, background: "linear-gradient(90deg, #8b9a76, #75835f)" }} />
                 </span>
               </div>
@@ -1408,7 +1423,7 @@ function PanelsView({
     return map;
   }, [chapter]);
   return (
-    <div className="flex flex-col" style={{ gap: 44 }}>
+    <div className="flex flex-col" style={{ gap: 30 }}>
       {panels.map((panel, i) => {
         const src = IMG[panel.img];
         if (!src) return null;
@@ -1427,10 +1442,10 @@ function PanelsView({
             <div
               className="relative overflow-hidden"
               style={{
-                borderRadius: 18,
+                borderRadius: 10,
                 boxShadow: night
-                  ? "0 0 0 1px rgba(236,227,208,0.14), 0 22px 44px -18px rgba(0,0,0,0.7)"
-                  : "0 0 0 1px rgba(74,60,35,0.14), 0 2px 6px rgba(60,45,20,0.08), 0 22px 44px -18px rgba(60,45,20,0.4)",
+                  ? "0 0 0 2px rgba(236,227,208,0.35), 0 22px 44px -18px rgba(0,0,0,0.7)"
+                  : "0 0 0 2px rgba(43,36,26,0.82), 0 2px 6px rgba(60,45,20,0.1), 0 22px 44px -18px rgba(60,45,20,0.4)",
               }}
             >
               <img src={src} alt={panel.alt} className="block w-full" style={{ aspectRatio: "3 / 2", objectFit: "cover" }} />
@@ -1978,10 +1993,16 @@ function Reader({
                 ×
               </button>
             </div>
-            <div className="font-en-serif truncate px-5 pt-1 text-[14px]" style={{ color: th.soft }}>
-              {book.title}
+            <div className="flex items-baseline gap-2 px-5 pt-1.5">
+              <span className="font-en-serif truncate text-[14px]" style={{ color: th.soft }}>
+                {book.title}
+              </span>
+              <span className="flex-none text-[12px]" style={{ color: th.soft, opacity: 0.75 }}>
+                共 {book.content.chapters.length} 章
+              </span>
             </div>
-            <div className="mt-3 px-3">
+            <div className="mx-5 mt-4 border-t" style={{ borderColor: settings.theme === "night" ? "rgba(236,227,208,0.1)" : "rgba(74,60,35,0.09)" }} />
+            <div className="mt-2 px-3 pb-2">
               {book.content.chapters.map((ch, i) => {
                 const count = ch.blocks.reduce((n, b) => (b.type === "p" ? n + b.sentences.length : n), 0);
                 const active = i === chapterIndex;
@@ -1991,35 +2012,55 @@ function Reader({
                     type="button"
                     onClick={() => goChapter(i)}
                     aria-current={active ? "true" : undefined}
-                    className="mb-1 block w-full rounded-2xl px-4 py-3.5 text-left transition-all duration-200 hover:bg-[rgba(157,95,48,0.05)] active:scale-[0.99]"
+                    className="mb-0.5 flex w-full items-start gap-3.5 rounded-2xl px-3.5 py-3 text-left transition-all duration-200 hover:bg-[rgba(157,95,48,0.05)] active:scale-[0.99]"
                     style={{
-                      background: active ? (settings.theme === "night" ? "rgba(236,227,208,0.07)" : "rgba(157,95,48,0.09)") : "transparent",
-                      boxShadow: active ? "inset 0 1px 3px rgba(138,82,39,0.1)" : "none",
-                      minHeight: 56,
+                      background: active ? (settings.theme === "night" ? "rgba(236,227,208,0.07)" : "rgba(157,95,48,0.08)") : "transparent",
+                      boxShadow: active
+                        ? `inset 3px 0 0 ${settings.theme === "night" ? "#dfa468" : "#b26f3f"}`
+                        : "none",
+                      minHeight: 58,
                     }}
                   >
-                    <div className="text-[11.5px] font-bold" style={{ letterSpacing: "0.22em", textTransform: "uppercase", color: "#9c875a" }}>
-                      {ch.kicker}
-                    </div>
-                    <div className="font-en-serif mt-0.5" style={{ fontSize: 17, fontWeight: active ? 700 : 500 }}>
-                      {ch.title}
-                    </div>
-                    <div className="flex items-center gap-2 text-[12.5px]" style={{ color: th.soft }}>
-                      <span>
-                        {count} 句{active ? " · 正在读" : ""}
+                    <span
+                      className="font-en-serif flex-none text-center"
+                      style={{
+                        width: 26,
+                        fontSize: 19,
+                        fontWeight: 700,
+                        lineHeight: 1.25,
+                        color: active ? (settings.theme === "night" ? "#dfa468" : "#9d5f30") : th.soft,
+                        opacity: active ? 1 : 0.55,
+                      }}
+                    >
+                      {i + 1}
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-[10.5px] font-bold" style={{ letterSpacing: "0.22em", textTransform: "uppercase", color: "#9c875a" }}>
+                        {ch.kicker}
                       </span>
-                      {(ch.panels?.length ?? 0) > 0 ? (
-                        <span
-                          className="rounded-full px-2 py-0.5 text-[10.5px] font-bold tracking-[0.08em]"
-                          style={{
-                            background: settings.theme === "night" ? "rgba(217,154,91,0.16)" : "rgba(157,95,48,0.11)",
-                            color: settings.theme === "night" ? "#dfa468" : "#9d5f30",
-                          }}
-                        >
-                          分镜
-                        </span>
-                      ) : null}
-                    </div>
+                      <span className="font-en-serif mt-0.5 block leading-snug" style={{ fontSize: 16.5, fontWeight: active ? 700 : 500 }}>
+                        {ch.title}
+                      </span>
+                      <span className="mt-1 flex items-center gap-2 text-[12px]" style={{ color: th.soft }}>
+                        <span>{count} 句</span>
+                        {(ch.panels?.length ?? 0) > 0 ? (
+                          <span
+                            className="rounded-full px-2 py-0.5 text-[10.5px] font-bold tracking-[0.08em]"
+                            style={{
+                              background: settings.theme === "night" ? "rgba(217,154,91,0.16)" : "rgba(157,95,48,0.11)",
+                              color: settings.theme === "night" ? "#dfa468" : "#9d5f30",
+                            }}
+                          >
+                            分镜
+                          </span>
+                        ) : null}
+                        {active ? (
+                          <span className="font-bold" style={{ color: settings.theme === "night" ? "#dfa468" : "#9d5f30" }}>
+                            正在读
+                          </span>
+                        ) : null}
+                      </span>
+                    </span>
                   </button>
                 );
               })}
