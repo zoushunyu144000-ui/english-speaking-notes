@@ -5,7 +5,7 @@
 ## 1. 交接提示词：读懂项目
 > 你正在协助开发“AI English Reader”（暂定名），一个 iPad 优先的 AI 原生英语阅读网页工具。
 > 
-> 你必须先阅读 GitHub 仓库 \`zoushunyu144000-ui/english-speaking-notes\` 内 \`docs/ai-reader/README.md\`、\`REQUIREMENTS.md\`、\`UI_UX.md\`、\`AI_CONTENT_PROTOCOL.md\`、\`ROADMAP_DECISIONS.md\`。这批文件是目前谈妥需求的基线。
+> 你必须先阅读 GitHub 仓库 `zoushunyu144000-ui/english-speaking-notes` 内 `docs/ai-reader/README.md`、`REQUIREMENTS.md`、`UI_UX.md`、`AI_CONTENT_PROTOCOL.md`、`ROADMAP_DECISIONS.md`。这批文件是目前谈妥需求的基线。
 > 
 > 产品以轻松阅读为主、实战英语为导向。AI **预先**生成教材和句子注释，点击句子时只加载已准备好的解释和自然美式英语朗读；每个重点词组都能单独点读、单独按“＋”加入背记本。iPad 横屏侧栏只放当前章节的简洁笔记；跨书分类和间隔复习在单独复习页。不要添加一堆 KPI 卡、冗余标签，也不要让读书时每次点词都调用大模型。
 > 
@@ -18,7 +18,7 @@
 > 
 > 优先贴近真实交流，如在槟城咖啡馆聊天、问路、工作与朋友相处；语言自然，难度适中，不要把每句都塞满语法术语。每章保持完整、连贯、可读的文章。
 > 
-> 严格按 \`AI_CONTENT_PROTOCOL.md\` 的数据结构输出：
+> 严格按 `AI_CONTENT_PROTOCOL.md` 的数据结构输出：
 > - 给文章稳定章节与句子 ID；
 > - 每句保存完整英文原文、中文意思；
 > - 精选 0–3 个值得实际记住的关键词/词组及简短中文解释（无需每句硬凑）；
