@@ -24,3 +24,12 @@ iPad 优先的英语点读网页应用。基于 [产品需求](../../docs/ai-rea
 
 ## 产品版本
 2026-11-11 / 0.1 · 首个可操作核心学习闭环。
+
+
+## 在线预览
+- 发布地址：https://english-room-op3yzt.v2.appdeploy.ai/
+- AppDeploy 应用 ID：`english-room-op3yzt`
+- 初次部署：2026-11-11
+- 已确认部署状态：ready，未报告前端/网络运行错误（并非所有硬件浏览器和业务功能的完整验收）。
+- GitHub 内实际入口：`index.html` → `src/reader.js`。部署平台还包含其自动提供的 Vite 模板配置。
+- 本目录是 MVP 源码备份；未来重要变更须先同步本目录与 `docs/ai-reader/`，并验证线上部署。
