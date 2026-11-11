@@ -139,3 +139,20 @@ Standard English（标准英语） + Malaysian everyday English（马来西亚�
 > 先复习，再学新内容。
 
 `memory/review_queue.json` 是复习状态的唯一权威来源。
+
+---
+
+# AI English Reader Web Product — product requirements handoff
+
+This repository also archives the separately planned AI English Reader **web product** (not the same as the existing speaking-notes training workflow).
+
+When working on the English Reader UI, AI book generation, TTS playback, notes, spaced repetition, or AI integrations, **first read**:
+
+- `docs/ai-reader/README.md`
+- `docs/ai-reader/REQUIREMENTS.md`
+- `docs/ai-reader/UI_UX.md`
+- `docs/ai-reader/ROADMAP_DECISIONS.md`
+- `docs/ai-reader/AI_CONTENT_PROTOCOL.md`
+- `docs/ai-reader/AI_HANDOFF_PROMPTS.md`
+
+Those files capture the confirmed product constraints and separate confirmed requirements from implementation suggestions. Do not claim planned features are already coded. Keep this repository's existing English study records intact. Record new confirmed decisions and update the relevant spec in GitHub; never commit secrets or a user's private study data.
