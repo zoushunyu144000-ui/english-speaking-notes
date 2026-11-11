@@ -1,0 +1,97 @@
+[
+  {
+    "name": "Read, explain and save a phrase",
+    "sanity": true,
+    "viewport": "desktop",
+    "covers": [
+      "open book",
+      "sentence explanation",
+      "phrase audio action",
+      "phrase save",
+      "chapter notes"
+    ],
+    "description": "Check that a reader can open a chapter sentence and save a key phrase directly to chapter notes.",
+    "steps": [
+      "Open A Day in Penang from the bookshelf",
+      "Tap the sentence containing get used to",
+      "Press the small plus next to get used to",
+      "Open or view this chapter notes"
+    ],
+    "expected": "The full sentence explanation is shown and get used to appears in the current chapter notes."
+  },
+  {
+    "name": "Review a saved phrase with a retention grade",
+    "viewport": "desktop",
+    "covers": [
+      "spaced repetition",
+      "reveal answer",
+      "learning grade",
+      "per-item next-review schedule",
+      "persistent local state"
+    ],
+    "description": "Confirm a saved phrase can be reviewed and its grade is retained.",
+    "steps": [
+      "Open A Day in Penang, tap the sentence containing get used to and save that phrase",
+      "Go to 复习",
+      "Switch to 词组",
+      "Choose 显示释义 and then 掌握",
+      "Refresh the page and revisit 复习"
+    ],
+    "expected": "The saved phrase remains and a next-review date is shown; no material is lost after refresh."
+  },
+  {
+    "name": "Chapter feedback and learning preferences",
+    "viewport": "desktop",
+    "covers": [
+      "chapter feedback",
+      "subjective difficulty",
+      "learning note",
+      "accent selection",
+      "settings persistence"
+    ],
+    "description": "Record how difficult a chapter felt and change the speech accent preference.",
+    "steps": [
+      "Open a book and tap 完成本章",
+      "Select 有些困难, add a learning comment, and save",
+      "Go to 设置 and choose British English",
+      "Refresh and reopen 设置"
+    ],
+    "expected": "The chosen accent remains selected and the learning feedback is stored without changing the book text."
+  },
+  {
+    "name": "Import user material with safe validation",
+    "viewport": "mobile",
+    "covers": [
+      "responsive navigation",
+      "import book",
+      "import validation",
+      "bookshelf persistence"
+    ],
+    "description": "Verify the mobile bookshelf and the file import validation prevent unsupported content from causing silent loss.",
+    "steps": [
+      "Open the app on mobile and switch to 书架",
+      "Choose 导入 and select a short TXT file with an English sentence",
+      "Confirm a new book appears",
+      "Attempt to import an invalid JSON file"
+    ],
+    "expected": "The TXT material can be opened as a book and invalid JSON presents a visible import failure without removing books."
+  },
+  {
+    "name": "Export personal backup and ensure local-first behavior",
+    "viewport": "mobile",
+    "covers": [
+      "export backup",
+      "local-only data",
+      "settings",
+      "data safety"
+    ],
+    "description": "Ensure the settings area exposes a backup path without any login requirement.",
+    "steps": [
+      "Open 设置 from mobile navigation",
+      "Choose 导出备份",
+      "Confirm that a JSON download starts",
+      "Check that the application never prompts for account creation"
+    ],
+    "expected": "A personal JSON backup is downloaded and no account is required for the core features."
+  }
+]
