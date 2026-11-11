@@ -11,7 +11,7 @@
 5. 读写操作遵循版本与事务：不能将用户已记的笔记覆盖掉，也不能悄悄改写原书。
 
 ## B. 建议的教材 JSON（示例，不是固定最终实现）
-\`\`\`json
+```json
 {
   "schema_version": "0.1",
   "book_id": "book-penang-life",
@@ -67,13 +67,13 @@
     }
   ]
 }
-\`\`\`
-- \`audio.asset\` 是资源定位符，**不把 TTS 音频当成每次都要重新生成**；缺失时可按策略生成/缓存。
+```
+- `audio.asset` 是资源定位符，**不把 TTS 音频当成每次都要重新生成**；缺失时可按策略生成/缓存。
 - 词组本体可跨章节去重，但收藏仍需存**所在章节/原句**。
 - 气泡位置属于 UI 元数据，英文文本仍是可交互的文本层，不烧到图片里。
 
 ## C. 建议的学习记录（必须与教材内容解耦）
-\`\`\`json
+```json
 {
   "user_profile": {
     "target_level": "A2",
@@ -114,26 +114,26 @@
     }
   ]
 }
-\`\`\`
+```
 - 示例日期/水平等只是测试样例，不表示对用户的真实水平判断。
 - 除复习历史外，记录用户主观难度、收藏与重复朗读等辅助证据；**不把一次点击当作能力结论**。
 - 版本升级必须保留旧数据，可有可恢复的迁移方案。
 
 ## D. 外部 AI 应有的操作（命名为候选，不是现成接口）
 **读取范围**：
-- \`get_learning_profile()\`：水平、兴趣与偏好。
-- \`get_reading_progress()\`：书籍/章节/进度。
-- \`get_review_summary()\`：复习统计、薄弱项。
-- \`get_chapter_feedback(book_id, chapter_id)\`：章节自评。
-- \`get_book_schema()\`：教材所需的结构与生成规则。
+- `get_learning_profile()`：水平、兴趣与偏好。
+- `get_reading_progress()`：书籍/章节/进度。
+- `get_review_summary()`：复习统计、薄弱项。
+- `get_chapter_feedback(book_id, chapter_id)`：章节自评。
+- `get_book_schema()`：教材所需的结构与生成规则。
 
 **写入范围（需用户授权）**：
-- \`propose_study_plan(...)\`：提出计划变更；建议先预览可接受/可撤销。
-- \`create_book_draft(...)\`：上传新教材草稿，不直接覆盖现有书籍。
-- \`publish_book_draft(draft_id)\`：书籍校验后发布。
-- \`append_chapter(...)\`：追加新章，需确保不改动已读原章。
-- \`attach_prepared_explanations(...)\`：补充预制句子注释/词组。
-- \`attach_scene_assets(...)\`：增加合法插画、可点对话气泡资源。
+- `propose_study_plan(...)`：提出计划变更；建议先预览可接受/可撤销。
+- `create_book_draft(...)`：上传新教材草稿，不直接覆盖现有书籍。
+- `publish_book_draft(draft_id)`：书籍校验后发布。
+- `append_chapter(...)`：追加新章，需确保不改动已读原章。
+- `attach_prepared_explanations(...)`：补充预制句子注释/词组。
+- `attach_scene_assets(...)`：增加合法插画、可点对话气泡资源。
 
 **谨慎/禁止**：
 - 不向 AI 默认开放全量云盘、账号支付信息或其他用户数据；
@@ -149,7 +149,7 @@
 - 所有云同步、AI 读写权限都须防止越权访问和数据泄露。
 
 ## F. 教材制作流水线
-\`\`\`text
+```text
 用户需求/学习记录 + 授权教材
           ↓
 AI 生成/推荐/调整课程大纲
@@ -165,4 +165,4 @@ AI 生成/推荐/调整课程大纲
 发布到书架 → 本地阅读 → 点读/收藏 → 章节反馈
           ↓
 复习记录与反馈 → 下轮 AI 调整
-\`\`\`
+```
